@@ -4,17 +4,17 @@ using namespace std;
 class Solution {
 public:
     int reverse(int x) {
-        int remainder;
-        int num = 0;
+        int rev = 0;
         while (x != 0) {
-            remainder = x % 10;
-            if (num > INT_MAX / 10 || (num == INT_MAX / 10 && remainder > 7)) 
+            int digit = x % 10;
+            x /= 10;
+            if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && digit > 7))
                 return 0;
-            if (num < INT_MIN / 10 || (num == INT_MIN / 10 && remainder < -8)) 
+            if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && digit < -8))
                 return 0;
-            num = num * 10 + remainder;
-            x = x / 10;
+
+            rev = rev * 10 + digit;
         }
-        return num;
+        return rev;
     }
 };
